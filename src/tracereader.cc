@@ -50,13 +50,15 @@ ooo_model_instr tracereader::read_single_instr()
 
   while (!fread(&trace_read_instr, sizeof(T), 1, trace_file)) {
     // reached end of file for this trace
+    std::cout << "*** Have read " << trace_count << "traces" << std::endl;
     std::cout << "*** Reached end of trace: " << trace_string << std::endl;
 
     // close the trace file and re-open it
     close();
+    exit(0);
     open(trace_string);
   }
-
+  trace_count++;
   // copy the instruction into the performance model's instruction format
   ooo_model_instr retval(cpu, trace_read_instr);
   return retval;

@@ -11,6 +11,7 @@ protected:
   std::string cmd_fmtstr;
   std::string decomp_program;
   std::string trace_string;
+  uint64_t trace_count;
 
 public:
   tracereader(const tracereader& other) = delete;
