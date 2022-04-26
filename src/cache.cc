@@ -350,7 +350,9 @@ bool CACHE::filllike_miss(std::size_t set, std::size_t way, PACKET& handle_pkt)
   impl_replacement_update_state(handle_pkt.cpu, set, way, handle_pkt.address, handle_pkt.ip, 0, handle_pkt.type, 0);
 
   // COLLECT STATS
-  std::cerr << handle_pkt.instr_id << " " << handle_pkt.ip << std::endl;
+  if (NAME == "LLC") {
+    std::cerr << dec << handle_pkt.instr_id << " " << hex << handle_pkt.ip << " " << hex << handle_pkt.address << std::endl;
+  }
   sim_miss[handle_pkt.cpu][handle_pkt.type]++;
   sim_access[handle_pkt.cpu][handle_pkt.type]++;
 
